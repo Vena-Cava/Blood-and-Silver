@@ -1,5 +1,7 @@
-package me.CHANGEME.slimefunaddon;
+package me.venacava.bloodandsilver;
 
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +15,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 
-public class ExampleAddon extends JavaPlugin implements SlimefunAddon {
+public class BloodAndSilver extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
@@ -28,11 +30,14 @@ public class ExampleAddon extends JavaPlugin implements SlimefunAddon {
          * 1. Creating a new Category
          * This Category will use the following ItemStack
          */
-        ItemStack itemGroupItem = new CustomItemStack(Material.DIAMOND, "&4Addon Category", "", "&a> Click to open");
+        ItemStack bloSilItem = new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMxY2Q3ZWQ0ZTRiZjA3YzNkZmQ5YmE0OTg3MDhlNzMwZTY5ZDgwNzMzNWFmZmFiYzEyZDg3ZmY1NDJmNmE4OCJ9fX0=")),
+                "&4Blood & Silver",
+                "",
+                "&a> Click to open");
 
         // Give your Category a unique id.
-        NamespacedKey itemGroupId = new NamespacedKey(this, "addon_category");
-        ItemGroup itemGroup = new ItemGroup(itemGroupId, itemGroupItem);
+        NamespacedKey bloSilId = new NamespacedKey(this, "bloodandsilver");
+        ItemGroup itemGroup = new ItemGroup(bloSilId, bloSilItem);
 
         /*
          * 2. Create a new SlimefunItemStack
