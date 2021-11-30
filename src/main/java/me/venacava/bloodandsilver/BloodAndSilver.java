@@ -39,30 +39,23 @@ public class BloodAndSilver extends JavaPlugin implements SlimefunAddon {
         NamespacedKey bloSilId = new NamespacedKey(this, "bloodandsilver");
         ItemGroup itemGroup = new ItemGroup(bloSilId, bloSilItem);
 
-        /*
-         * 2. Create a new SlimefunItemStack
-         * This class has many constructors, it is very important
-         * that you give each item a unique id.
-         */
-        SlimefunItemStack slimefunItem = new SlimefunItemStack("COOL_DIAMOND", Material.DIAMOND, "&4Cool Diamond", "&c+20% Coolness");
+        // Create Item
+        SlimefunItemStack holyWater = new SlimefunItemStack("BS_HOLY_WATER", Material.POTION, "&fHoly Water", "");
 
-        /*
-         * 3. Creating a Recipe
-         * The Recipe is an ItemStack Array with a length of 9.
-         * It represents a Shaped Recipe in a 3x3 crafting grid.
-         * The machine in which this recipe is crafted in is specified
-         * further down as the RecipeType.
-         */
-        ItemStack[] recipe = { new ItemStack(Material.EMERALD), null, new ItemStack(Material.EMERALD), null, new ItemStack(Material.DIAMOND), null, new ItemStack(Material.EMERALD), null, new ItemStack(Material.EMERALD) };
+        PotionMeta meta = (PotionMeta) holyWater.getItemMeta();
+        meta.setBasePotionData(new PotionData(PotionType).WATER));
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        holyWater.setItemMeta(meta);
+        
+        // Crafting Recipe
+        ItemStack[] holyWaterRecipe = {
+            SlimefunItems.SALT,                     new ItemStack(Material.POTION),     null,
+            null,                                   null,                               null,
+            null,                                   null,                               null
+            };
 
-        /*
-         * 4. Registering the Item
-         * Now you just have to register the item.
-         * RecipeType.ENHANCED_CRAFTING_TABLE refers to the machine in
-         * which this item is crafted in.
-         * Recipe Types from Slimefun itself will automatically add the recipe to that machine.
-         */
-        SlimefunItem item = new SlimefunItem(itemGroup, slimefunItem, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+        // Register Item & Recipe
+        SlimefunItem item = new SlimefunItem(itemGroup, holyWater, RecipeType.ENHANCED_CRAFTING_TABLE, holyWaterRecipe);
         item.register(this);
     }
 
