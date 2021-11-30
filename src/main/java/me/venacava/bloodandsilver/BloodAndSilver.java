@@ -40,16 +40,28 @@ public class BloodAndSilver extends JavaPlugin implements SlimefunAddon {
         ItemGroup itemGroup = new ItemGroup(bloSilId, bloSilItem);
 
         // Create Item
-        SlimefunItemStack holyWater = new SlimefunItemStack("BS_HOLY_WATER", Material.POTION, "&fHoly Water", "");
+        SlimefunItemStack holyWater = new SlimefunItemStack(
+            "BS_HOLY_WATER",
+            Material.POTION,
+            "&fHoly Water",
+            ""
+        );
 
         PotionMeta meta = (PotionMeta) holyWater.getItemMeta();
         meta.setBasePotionData(new PotionData(PotionType).WATER));
         meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         holyWater.setItemMeta(meta);
         
+        ItemStack waterBottle = new itemstack(Material.POTION);
+        
+        PotionMeta meta = (PotionMeta) waterBottle.getItemMeta();
+        meta.setBasePotionData(new PotionData(PotionType).WATER));
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        waterBottle.setItemMeta(meta);
+        
         // Crafting Recipe
         ItemStack[] holyWaterRecipe = {
-            SlimefunItems.SALT,                     new ItemStack(Material.POTION),     null,
+            SlimefunItems.SALT,                     waterBottle.getItem(),              null,
             null,                                   null,                               null,
             null,                                   null,                               null
             };
