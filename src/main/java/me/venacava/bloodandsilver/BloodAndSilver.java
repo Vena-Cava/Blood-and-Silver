@@ -1,10 +1,13 @@
 package me.venacava.bloodandsilver;
 
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -14,6 +17,8 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 public class BloodAndSilver extends JavaPlugin implements SlimefunAddon {
 
@@ -40,24 +45,23 @@ public class BloodAndSilver extends JavaPlugin implements SlimefunAddon {
         ItemGroup itemGroup = new ItemGroup(bloSilId, bloSilItem);
 
         // Create Item
-        SlimefunItemStack holyWater = new SlimefunItemStack(
-            "BS_HOLY_WATER",
-            Material.POTION,
-            "&fHoly Water",
-            ""
+        SlimefunItemStack holyWater = new SlimefunItemStack("BS_HOLYWATER",
+                Material.POTION,
+                "&fHoly Water",
+                "&7A Bottle of Blessed Water."
         );
 
-        PotionMeta meta = (PotionMeta) holyWater.getItemMeta();
-        meta.setBasePotionData(new PotionData(PotionType).WATER));
-        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-        holyWater.setItemMeta(meta);
+        PotionMeta hWMeta = (PotionMeta) holyWater.getItemMeta();
+        hWMeta.setBasePotionData(new PotionData(PotionType).WATER));
+        hWMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        holyWater.setItemMeta(hWMeta);
         
-        ItemStack waterBottle = new itemstack(Material.POTION);
+        ItemStack waterBottle = new ItemStack(Material.POTION);
         
-        PotionMeta meta = (PotionMeta) waterBottle.getItemMeta();
-        meta.setBasePotionData(new PotionData(PotionType).WATER));
-        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-        waterBottle.setItemMeta(meta);
+        PotionMeta wMeta = (PotionMeta) waterBottle.getItemMeta();
+        wMeta.setBasePotionData(new PotionData(PotionType).WATER));
+        wMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        waterBottle.setItemMeta(wMeta);
         
         // Crafting Recipe
         ItemStack[] holyWaterRecipe = {
